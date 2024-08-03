@@ -7,6 +7,12 @@ import 'home_screen.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // TODO set initial locale the device's locale if available, if not use base_locale
+
+  // TODO Try DateFormat class to format DateTime.
+  // DateFormat('dd LLLL, yyyy').format(DateTime.now()) -> see output for each locale
+  // Is there any anomaly? Try to fix them...
+
   runApp(const MainApp());
 }
 
