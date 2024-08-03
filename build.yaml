@@ -1,0 +1,10 @@
+targets:
+  $default:
+    builders:
+      slang_build_runner:
+        options:
+          base_locale: ru
+          fallback_strategy: base_locale
+          input_directory: assets/translations/
+          output_directory: lib/generated/
+          translate_var: translations
