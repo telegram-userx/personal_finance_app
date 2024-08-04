@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart';
+import 'package:turkmen_localization_support/turkmen_localization_support.dart';
 
 import 'generated/strings.g.dart';
 import 'home_screen.dart';
@@ -9,9 +11,11 @@ void main() {
 
   // TODO set initial locale the device's locale if available, if not use base_locale
 
-  // TODO Try DateFormat class to format DateTime.
-  // DateFormat('dd LLLL, yyyy').format(DateTime.now()) -> see output for each locale
-  // Is there any anomaly? Try to fix them...
+  LocaleSettings.getLocaleStream().listen(
+    (appLocale) {
+      Intl.defaultLocale = appLocale.languageTag;
+    },
+  );
 
   runApp(const MainApp());
 }
@@ -31,6 +35,7 @@ class MainApp extends StatelessWidget {
             GlobalMaterialLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
+            ...TkDelegates.delegates,
           ],
 
           home: const HomeScreen(),

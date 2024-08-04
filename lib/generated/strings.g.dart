@@ -3,10 +3,10 @@
 /// Original: assets/translations
 /// To regenerate, run: `dart run slang`
 ///
-/// Locales: 2
-/// Strings: 2 (1 per locale)
+/// Locales: 3
+/// Strings: 3 (1 per locale)
 ///
-/// Built on 2024-08-03 at 17:34 UTC
+/// Built on 2024-08-04 at 10:56 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -26,7 +26,8 @@ const AppLocale _baseLocale = AppLocale.ru;
 /// - if (LocaleSettings.currentLocale == AppLocale.ru) // locale check
 enum AppLocale with BaseAppLocale<AppLocale, Translations> {
 	ru(languageCode: 'ru', build: Translations.build),
-	en(languageCode: 'en', build: _StringsEn.build);
+	en(languageCode: 'en', build: _StringsEn.build),
+	tk(languageCode: 'tk', build: _StringsTk.build);
 
 	const AppLocale({required this.languageCode, this.scriptCode, this.countryCode, required this.build}); // ignore: unused_element
 
@@ -180,6 +181,35 @@ class _StringsEn extends Translations {
 	@override String get hello => 'Hello!';
 }
 
+// Path: <root>
+class _StringsTk extends Translations {
+	/// You can call this constructor and build your own translation instance of this locale.
+	/// Constructing via the enum [AppLocale.build] is preferred.
+	_StringsTk.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
+		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
+		  $meta = TranslationMetadata(
+		    locale: AppLocale.tk,
+		    overrides: overrides ?? {},
+		    cardinalResolver: cardinalResolver,
+		    ordinalResolver: ordinalResolver,
+		  ),
+		  super.build(cardinalResolver: cardinalResolver, ordinalResolver: ordinalResolver) {
+		super.$meta.setFlatMapFunction($meta.getTranslation); // copy base translations to super.$meta
+		$meta.setFlatMapFunction(_flatMapFunction);
+	}
+
+	/// Metadata for the translations of <tk>.
+	@override final TranslationMetadata<AppLocale, Translations> $meta;
+
+	/// Access flat map
+	@override dynamic operator[](String key) => $meta.getTranslation(key) ?? super.$meta.getTranslation(key);
+
+	@override late final _StringsTk _root = this; // ignore: unused_field
+
+	// Translations
+	@override String get hello => 'Salam!';
+}
+
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 
@@ -196,6 +226,15 @@ extension on _StringsEn {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'hello': return 'Hello!';
+			default: return null;
+		}
+	}
+}
+
+extension on _StringsTk {
+	dynamic _flatMapFunction(String path) {
+		switch (path) {
+			case 'hello': return 'Salam!';
 			default: return null;
 		}
 	}
